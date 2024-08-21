@@ -1,0 +1,81 @@
+---
+title: "Data Analytics"
+author: "Rishi Kamtam"
+Date: Summer 2 2024
+---
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+# loading necessary libraries
+library(RMySQL)
+library(kableExtra)
+```
+
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+# defining parameters for database connection
+db_name <- "sql5726266"
+db_user <- "sql5726266"
+db_host <- "sql5.freesqldatabase.com"
+db_pwd <- "YeQH7DryPF"
+db_port <- 3306
+
+# establishing connection to MySQL database
+mysql_dbcon <-  dbConnect(RMySQL::MySQL(), user = db_user, password = db_pwd,
+                      dbname = db_name, host = db_host, port = db_port)
+```
+
+
+
+What is the total amount sold in each month of 2022 for 'Clobromizen'?
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+query_1 <- "
+SELECT td.month, SUM(pf.total_amount) AS total_amount_sold
+  FROM product_facts pf
+  JOIN time_dim td ON pf.time_id = td.time_id
+  WHERE pf.product_name = 'Clobromizen' AND td.year = 2022
+  GROUP BY td.month;
+"
+
+result_1 <- dbGetQuery(mysql_dbcon, query_1)
+
+# displaying the result using kableExtra with theme
+result_1 %>%
+  kbl(caption = "Total Amount Sold per Month in 2022 for 'Clobromizen'") %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
+  full_width = FALSE)
+
+```
+
+
+How many units were sold in Brazil each year for 'Xipralofen'?
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+query_2 <- "
+SELECT td.year, SUM(total_units) AS units_sold 
+  FROM product_facts pf
+  JOIN location_dim ld ON pf.location_id = ld.location_id
+  JOIN time_dim td ON pf.time_id = td.time_id
+  WHERE ld.location_name = 'Brazil' and pf.product_name = 'Xipralofen'
+  GROUP BY td.year
+"
+
+result_2 <- dbGetQuery(mysql_dbcon, query_2)
+
+# displaying the result using kableExtra with theme
+result_2 %>%
+  kbl(caption = "Total Units Sold in Brazil per Year for 'Xipralofen'") %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
+  full_width = FALSE)
+```
+
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+# closing database connection
+dbDisconnect(mysql_dbcon)
+```
+
+
+
+
+
+
+

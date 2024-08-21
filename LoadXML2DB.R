@@ -1,14 +1,7 @@
 # ---------------------------------------
 # Title: Create Analytics Database
-# Subtitle: CS3200 / Final Project
 # Author: Rishi Kamtam
-# Date: Summer 2 2024
 # ---------------------------------------
-
-
-# Urls to sources I used for this assignment:
-# https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html
-# https://www.machinelearningplus.com/data-manipulation/datatable-in-r-complete-guide/
 
 
 # ERD for relational schema:

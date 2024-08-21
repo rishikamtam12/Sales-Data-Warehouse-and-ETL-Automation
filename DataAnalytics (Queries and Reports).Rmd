@@ -1,7 +1,6 @@
 ---
-title: "Data Analytics"
+title: "Data Analytics (Queries and Reports)"
 author: "Rishi Kamtam"
-Date: Summer 2 2024
 ---
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}

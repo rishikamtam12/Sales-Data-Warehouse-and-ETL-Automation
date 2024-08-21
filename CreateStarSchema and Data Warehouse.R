@@ -1,8 +1,6 @@
 # ---------------------------------------
-# Title: Create Star Schema
-# Subtitle: CS3200 / Final Project
+# Title: Create Star Schema and Data Warehouse
 # Author: Rishi Kamtam
-# Date: Summer 2 2024
 # ---------------------------------------
 
 
